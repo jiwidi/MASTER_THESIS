@@ -146,7 +146,7 @@ Several metrics will evaluate each model's performance to examine both their acc
 The rest of this report is organized as follows: In the second chapter, the main background needed for understanding the report will be given. This background comprehends from recommender systems terminology to an overview of artificial neural networks and the specifics of these models we used. The third chapter explains the specific architecture of the models tested. The fourth chapter gives an overview of the training setup and data processing, with a presentation of results. The fifth section discusses the presented results and the limitations of the project and finished the thesis with future work and conclusions.
 
 \section{Sustainability and ethics}
-Recommendation systems are built to interact with users by nature, raising concerns about their ethics and responsibilities. The initial problems start with the data used to train such models. Did the users provide consent for the usage of their data to train these models? Or even just usage of the data to provide them with recommendations. Companies will often collect as much data as possible and use them on their systems. Data collection policies have raised concerns on the European Union, and regulations for users' privacy have started to appear\cite{EUdataregulations2018}. The company's responsibility is to let the user know what data is collected, how, for how long, and what it will be used to. This data will have to be stored appropriately to protect user privacy and follow necessary regulations.
+Recommendation systems are built to interact with users by nature, raising concerns about their ethics and responsibilities. The initial problems start with the data used to train such models. Did the users provide consent for the usage of their data to train these models? Or even just usage of the data to provide them with recommendations. Companies will often collect as much data as possible and use them on their systems. Data collection policies have raised concerns on the European Union, and regulations for users' privacy have started to appear \cite{EUdataregulations2018}. The company's responsibility is to let the user know what data is collected, how, for how long, and what it will be used to. This data will have to be stored appropriately to protect user privacy and follow necessary regulations.
 
 The impact of the recommendation system can also raise concerns; recommendation systems can produce negative effects on users' life. After all, getting the user to interact more with the offered content is the objective. We have seen this happening with social media, where companies changed their chronologically ordered feed for user personalized feeds. This change made it possible to improve user engagement and retain them in their platform for as much as possible.
 
@@ -176,7 +176,7 @@ We now present several types of recommender systems.
 
 These are the main five types of recommender systems, each one with its advantages and disadvantages. When deciding what type of system we want to implement, we need to study the best fit. If we take the Utility-based approach, we can see how useful it can be when implemented in clothing companies. People have different clothing needs depending on the weather, but weather conditions may not play such a significant part if we were to use it in Spotify.
 
-The available user data will play a huge role when deciding what system to use. A famous recommendation problem is the cold start\cite{coldstart} where a new user comes into the systems, user profile is blank, and you need to provide recommendations. Systems like collaborative or content-based will not have enough information to provide relevant recommendations, but demographic will as long as the user provides enough demographic attributes when signing in the system.
+The available user data will play a huge role when deciding what system to use. A famous recommendation problem is the cold start \cite{coldstart} where a new user comes into the systems, user profile is blank, and you need to provide recommendations. Systems like collaborative or content-based will not have enough information to provide relevant recommendations, but demographic will as long as the user provides enough demographic attributes when signing in the system.
 
 The mentioned taxonomies are not exclusive from one another; one could implement a mix of collaborative and content-based approaches by implemented content-based user-profiles and the collaborative approach to find inter-user content relevant to the user. One could also implement different recommender systems and then join recommendations with an ensemble approach. These join models are called hybrid systems.
 
@@ -219,7 +219,7 @@ Where we have K nearest neighbors of user $c$ in $N_c$, $\bar{u_c}$ the mean uti
 
 
 \subsubsection{Matrix Factorization techniques} \label{als}
-Techniques that become popular after the Netflix Price \cite{netflix}. A competition on collaborative filtering methods was won with such techniques. Matrix factorization techniques present a new approach to solve the high sparsity in traditional collaborative methods. Netflix's competition was won with Matrix Factorization methods \cite{matrix}. These methods split the user-item matrices into multiple smaller matrices. The user-item interaction matrix is split into two lower dimensional matrices, the first one has a row for each user, and the second has a column for each item. Each row or column corresponding to a user or item will be referred to as latent factors\cite{latentspace} that will create a latent space.
+Techniques that become popular after the Netflix Price \cite{netflix}. A competition on collaborative filtering methods was won with such techniques. Matrix factorization techniques present a new approach to solve the high sparsity in traditional collaborative methods. Netflix's competition was won with Matrix Factorization methods \cite{matrix}. These methods split the user-item matrices into multiple smaller matrices. The user-item interaction matrix is split into two lower dimensional matrices, the first one has a row for each user, and the second has a column for each item. Each row or column corresponding to a user or item will be referred to as latent factors \cite{latentspace} that will create a latent space.
 
 
 \begin{figure}[H]
@@ -228,7 +228,7 @@ Techniques that become popular after the Netflix Price \cite{netflix}. A competi
     \caption{Matrix factorization example for a movie ratings dataset.}
 \end{figure}
 
-In \cite{matrixvanilla} we find the first implementation applied to the Netflix Price where. The predicted rating per each user $u$ for a given item $i$ is defined as follows:
+In the first implementation applied to the Netflix Price \cite{matrixvanilla} we find the predicted rating per each user $u$ for a given item $i$ is defined as follows:
 
 \begin{equation}
     \tilde{r}_{u i}=\sum_{f=0}^{n \text { factors }} H_{u, f} W_{f, i}
@@ -243,7 +243,7 @@ Where $\tilde{R}$ is the user-item matrix, $H$ contains user latent factors, and
 
 
 \subsubsection{Neural based}
-With the rise of neural networks in different fields, they also reached recommendation systems\cite{neuralonrecommendations}. Deep learning methods have been developed to tackle the collaborative filtering approach. In \cite{wang2015collaborative} the authors proposed an approach based on denoising autoencoder networks. Still, it was not until Deep Item-based Collaborative filtering \cite{deepicf} that deep learning methods beat traditional techniques. DeepICF made use of attention layers which already revolutionized the natural language field \cite{attention}. 
+With the rise of neural networks in different fields, they also reached recommendation systems \cite{neuralonrecommendations}. Deep learning methods have been developed to tackle the collaborative filtering approach. There has been proposed methods based on denoising autoencoder networks \cite{wang2015collaborative}. Still, it was not until Deep Item-based Collaborative filtering \cite{deepicf} that deep learning methods beat traditional techniques. DeepICF made use of attention layers which already revolutionized the natural language field \cite{attention}. 
 
 Deep learning methods performed well in recommendations because of their power to find meaningful items and user representations in the embedding space. Embedding layers have been used previously in natural language processing and revolutionized the field due to the dramatic decrease in sparsity to represent words and their accurate representation. 
 
@@ -251,7 +251,7 @@ Deep learning methods performed well in recommendations because of their power t
 Content-based recommender systems are built around the item attributes and the profile of the user preferences. The basic idea is to recommend items that are similar to what the user liked before \cite{contentbased}. These methods are suitable for situations with extensive data about the items and do not require user attributes such as demographic data. The model will build a user preference profile based on the history of its interactions and use it to recommend items the user will like.
 
 \subsubsection{Vector Space Model}
-The Vector Space Model\cite{vectorspacemodel} is the most famous method for content-based recommenders. The model inspires information retrieving systems to implement an item scorer. It treats item attributes as keywords and uses the TF-IDF\cite{tfidf} to calculate weights based on those keywords. Given an item, $d_j$, its content is defined by a set of weights $w_ij$ where each weight corresponds to the $i$th keyword of the item $d_j$.
+The Vector Space Model \cite{vectorspacemodel} is the most famous method for content-based recommenders. The model inspires information retrieving systems to implement an item scorer. It treats item attributes as keywords and uses the TF-IDF \cite{tfidf} to calculate weights based on those keywords. Given an item, $d_j$, its content is defined by a set of weights $w_ij$ where each weight corresponds to the $i$th keyword of the item $d_j$.
 \begin{equation}
 \operatorname{Content}\left(d_{j}\right)=\left\{w_{1 j}, w_{2 j}, \ldots\right\}
 \end{equation}
@@ -294,7 +294,7 @@ The neurons building an ANN are compute units that receive one or more inputs, w
 \begin{figure}[H]
     \centering
     \includegraphics[width=\textwidth]{The-structure-of-the-artificial-neuron.png}
-    \caption{Artificial neuron diagram\cite{neuron-diagram}. }
+    \caption{Artificial neuron diagram \cite{neuron-diagram}. }
 \end{figure}
 
 
@@ -349,7 +349,7 @@ These networks are often referred to as multilayer perceptrons and created the f
 
 \subsection{Recurrent Neural Networks}
 
-Recurrent Neural Networks (RNN) are a class of ANN where connections between neurons can form a directed graph. Cycles are formed in the neuron connections, where a neuron receives its own output. RNNs are commonly used to process sequences of inputs with variable length, as they create an internal state(memory) and process each input sequentially, capturing sequence relations. This makes them specially useful for task as handwriting recognition\cite{rnn-hand} and speech recognition\cite{rnn-speech}. Here we can see a diagram of an RNN cell.
+Recurrent Neural Networks (RNN) are a class of ANN where connections between neurons can form a directed graph. Cycles are formed in the neuron connections, where a neuron receives its own output. RNNs are commonly used to process sequences of inputs with variable length, as they create an internal state(memory) and process each input sequentially, capturing sequence relations. This makes them specially useful for task as handwriting recognition \cite{rnn-hand} and speech recognition \cite{rnn-speech}. Here we can see a diagram of an RNN cell.
 
 \begin{figure}[H]
     \centering
@@ -361,7 +361,7 @@ Recurrent Neural Networks (RNN) are a class of ANN where connections between neu
 The cell receives both the input vector $x_{t}$ and the previous hidden layer vector $h_{t-1}:$ and behaves as a standard neuron.
 
 \subsection{Long short-term memory - LSTM}
-Long short term memory(LSTM) ANN are a special RNN architecture\cite{lstm-author}. LSTMs replace RNN neurons by LSTM cells where that are is composed of three gates:
+Long short term memory(LSTM) ANN are a special RNN architecture \cite{lstm-author}. LSTMs replace RNN neurons by LSTM cells where that are is composed of three gates:
 \begin{itemize}
     \item Input gate
     \item Output gate
@@ -380,14 +380,14 @@ Each of the gates can be treated as a single neuron. Thanks to the more elaborat
 The cell receives the input vector $x_{t}$, previous hidden layer vector $h_{t-1}:$ and the previous cell state $c_{t-1}$. From left to right, forget gate $f_t$, input gate $i_{t}$, cell state candidate values $\bar{C}^{(t)}$ and output gate $o_{t}$. All the elements will control the flow of the input data through the cell by adding or removing information from the cell state$C^{(t)}$.
 
 \subsection{Gated recurrent unit - GRU}
-A Gated recurrent unit (GRU)\cite{gru} is another type of RNN architecture similar to LSTMs. GRU cells have two gates, a reset gate\cite{gru-forget}, and an update gate. The reset gate determines how to combine the new input with the previous memory, and the update gate defines how much of the previous memory to maintain. If the rest gate is set to 1 and the update gate to 0 it will be equivalent to a plain RNN.
+A Gated recurrent unit (GRU) \cite{gru} is another type of RNN architecture similar to LSTMs. GRU cells have two gates, a reset gate \cite{gru-forget}, and an update gate. The reset gate determines how to combine the new input with the previous memory, and the update gate defines how much of the previous memory to maintain. If the rest gate is set to 1 and the update gate to 0 it will be equivalent to a plain RNN.
 
-GRUs have seen better performance than LSTMs in speech recognition task\cite{gru-speech}, but it is still unclear which cell performs best. Here we can see a diagram of an LSTM cell. 
+GRUs have seen better performance than LSTMs in speech recognition task \cite{gru-speech}, but it is still unclear which cell performs best. Here we can see a diagram of an LSTM cell. 
 
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.6]{GRU-core.png}
-    \caption{GRU cell diagram  \cite{daniel}.}
+    \caption{GRU cell diagram \cite{daniel}.}
     
 \end{figure}
 
@@ -499,7 +499,7 @@ Being $U$ the full set of users recommendations and $c(i,j)$ the cosine similari
 
 
 \subsubsection{Novelty at K}
-Novel recommendations are referred to as content the user did not know about\cite{noveltyintro}, novelty at K aims to measure the novelty score of a recommendation list. Recommender systems can not accurately know if the content was unknown to the user, so they assume the less popular an item is, the more novel to the user it will be \cite{noveltyassumption}. We can calculate novelty at top-K recommendations by summing the novelty of each recommendation based on its popularity. 
+Novel recommendations are referred to as content the user did not know about \cite{noveltyintro}, novelty at K aims to measure the novelty score of a recommendation list. Recommender systems can not accurately know if the content was unknown to the user, so they assume the less popular an item is, the more novel to the user it will be \cite{noveltyassumption}. We can calculate novelty at top-K recommendations by summing the novelty of each recommendation based on its popularity. 
 
 
 \begin{equation}
@@ -526,11 +526,11 @@ All these metrics can also be calculated on content attribute level for more det
 In this section, we will go over the different model architectures evaluated. We start with the current model at H\&M and add new neural architectures based on NLP models. NLP Neural-based architectures do a fantastic job capturing time and order relations within a sequence. We expect the same when moving them in the recommendation system usage.
 
 \section{Baseline - AALS}
-AnnoyAlternatingLeastSquares (AALS) is a matrix factorization method. Following the algorithm described at \ref{als} we will build matrices for both user and items containing the latent factors. We will use Approximate Nearest Neighbour Search\cite{annoy} (ANNOY) within the matrices to find the approximate closest neighbors in order to create recommendations. We use ANNOY and not the correct Neighbours to save computational cost, these models are trained daily, and computational time takes a role.
+AnnoyAlternatingLeastSquares (AALS) is a matrix factorization method. Following the algorithm described at \ref{als} we will build matrices for both user and items containing the latent factors. We will use Approximate Nearest Neighbour Search \cite{annoy} (ANNOY) within the matrices to find the approximate closest neighbors in order to create recommendations. We use ANNOY and not the correct Neighbours to save computational cost, these models are trained daily, and computational time takes a role.
 
 
 \section{Neural Sequencer RNN}
-Basing on Google's work with Youtube recommendations \cite{rnn-youtube} we implemented a similar model adapted to H\&M use case. This Neural Sequencer RNN (N.S RNN) model consists of two embedding layers, a multi-layer RNN and a final classification linear layer. The model takes user id and user web browsing history as a sequence to predict the next item the user will interact with. Embeddings have a 256 size, RNN layers have 512 neurons and the final linear layer has 512 (twice the embedding size from the concat layer). 
+Basing on Google's work with Youtube recommendations \cite{rnn-youtube} we implemented a similar model adapted to H\&M use case. This Neural Sequencer RNN (N.S RNN) model consists of two embedding layers, a multi-layer RNN and a final classification linear layer. The model takes user id and user web browsing history as a sequence to predict the next item the user will interact with. Embeddings have a 256 size, RNN layers have 512 neurons and the final linear layer has 512 (twice the embedding size due to the concat layer). 
 
 \begin{figure}[H]
     \centering
@@ -541,7 +541,7 @@ Basing on Google's work with Youtube recommendations \cite{rnn-youtube} we imple
 The user id and user sequence of item interactions will pass through their respective embedding layers. The sequence of item representations will then pass through a three-layer LSTM which latest state will be concatenated to the user id representation and finally sent to a final classification layer predicting the next item the user will interact with. RNN gates are known not to be the most efficient gate for recurrent networks. We will also try another two variations with both LSTM and GRU cells.
 
 \section{Neural sequencer with attention}
-Following NLP research, our next experiment consists of the addition of an encoder-decoder architecture with attention. The attention layer was a breakthrough on machine translation  \cite{attention}. Schema of the model.
+Following NLP research, our next experiment consists of the addition of an encoder-decoder architecture with attention. The attention layer was a breakthrough on machine translation \cite{attention}. Schema of the model.
 
 \begin{figure}[H]
     \centering
@@ -570,7 +570,7 @@ The transformer encoder block consists of 8 attention heads with 2048 neurons on
 \chapter{Experimentation and results}\label{results}
 In this section, we will go over multiple experiments to understand each recommendation model performance and how both learn representations and time relations play a role in models performance.
 \section{Training setup}
-The main objective for the thesis has been evaluating different neural-based models. To keep a consistent training environment, we decided on some common training practices across all experiments. Batch size has been set for 2048, Adam\cite{adam} as an optimizer and OneCycle learning rate for fast convergence \cite{onecycle}. Such settings can play a significant role in model performance and are often a full research subject. To avoid going in an extensive singular model study, we went with the most common practices. We trained all experiments for an unlimited number of epochs with a patient policy of three, meaning that we will stop training when three consecutive epochs show decreasing model performance. Reported results are on the best performing epoch at test set, looking at the top fourteen recommendations.
+The main objective for the thesis has been evaluating different neural-based models. To keep a consistent training environment, we decided on some common training practices across all experiments. Batch size has been set for 2048, Adam \cite{adam} as an optimizer and OneCycle learning rate for fast convergence \cite{onecycle}. Such settings can play a significant role in model performance and are often a full research subject. To avoid going in an extensive singular model study, we went with the most common practices. We trained all experiments for an unlimited number of epochs with a patient policy of three, meaning that we will stop training when three consecutive epochs show decreasing model performance. Reported results are on the best performing epoch at test set, looking at the top fourteen recommendations.
 
 \section{Data}
 \subsection{Source}
@@ -684,7 +684,8 @@ How far back should we look in a user history is a big question when offering re
 We see a direct correlation between the max user history length and HR, the more we look back in the user history, the better our performance. We also see a major diversity impact the longer the history is, especially on the overlap metric; reaching AALS performance levels. The model can capture a more personalized representation of the history and offer a unique set of recommendations.
 
 \subsection{Recommended items features study}
-Another experiment relevant for our use case would be to study the features of recommended items. We get an initial view on how "diverse" our metrics are with the diversity metrics, but there is a use case-related study still to perform where we look at the item attributes of what we are recommending. For H\&M this can be looking at what categories are recommended the most, what range of prices are we recommending, age of the recommended products. All of this analysis can be missed with just diversity metrics, we now proceed to evaluate them on our baseline model AALS and the best performing neural-based N.S with LSTM cells.
+With performance or diversity metrics, we get a generalist performance evaluation, which is good enough for most of the use cases. Studying our model recommended items features provides us with a use case specific analysis on what we recommend. For H\&M we have different item attributes we look at, the first analysis is how popular are the items our models recommend. We picked our baseline model and the best performing Neural Sequencer and evaluated their popularity on the top fourteen recommended items.
+
 
 \begin{figure}[H]
     \centering
@@ -692,17 +693,27 @@ Another experiment relevant for our use case would be to study the features of r
     \caption{Average item popularity in top 14 recommendations.}
 \end{figure}
 
+Both models recommend significantly higher popular items than the average item popularity. Our baseline model is highly skewed towards high popularity items and decreases popularity as the item recommendation rank increases. The neural Sequencer model popularity stays consistant over the fourteen recommendations and stays lower than the baseline across all ranks.
+
+For a second analysis we went with the average price on recommended items, same models and top fourteen recommended items.
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{charts/price.png}
     \caption{Average item price in top 14 recommendations.}
 \end{figure}
 
+Our models perform have an opposite behavior when comparing with the average item price. The baseline model recommends lower price items, while the Neural Sequencer recommends higher price items. Neural sequencer produces recommendations of almost twice the price while having better hit ratio, potentially providing higher revenue. We can connect the findings with the past analysis on item popularity, here at H&M the best-selling products are basic clothing items such as white t shirts or white packs of socks, items that are aggressively priced at very low margins. For our last analysis, we decided to evaluate the item age of the top fourteen recommended items.
+
 \begin{figure}[H]
     \centering
     \includegraphics[scale=0.75]{charts/ages.png}
     \caption{Average item ages in top 14 recommendations.}
 \end{figure}
+
+Both models present a skew towards older items as the higher the rank they get, but in totally different scales. The baseline model presents its top tanked item with twice the age as the average item age, while the top ranked Neural Sequencer item only has $10\%$ an increase in age. Connecting with previous findings we can explain the results, the more popular items with aggressive prices are usually sold across all seasons, making them older than the on season products. 
+
+All three analysis have confirmed our initial findings with the diversity metrics evaluation, the baseline model has a reduced set of recommended items and provides a less personalized set of recommendations than the Neural Sequencer, proved by its skew towards low-priced and popular items. We now have a business explanation on how those differences in diversity metrics are translated in offered recommendations.
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %---------------------------------------------------------------------
@@ -723,9 +734,9 @@ The thesis has served to initialize exploration of neural-based models at H\&M, 
 There are multiple open paths to continue this work and will be treated in the future work section.
 
 \section{Limitations}
-The first limitation we found was to follow improvements in NLP models for our neural-based recommendation models. Transformers are known for requiring more fine-tuning than the methods, which proved more success in our experiments. We are not sure if our results could not follow NLP path due to our implementation or due to the change of use case. While both cases have a vocabulary (words or items) NLP has much harder interrelation between the words than clothes do at H\&M. It is the addition of the user profile that makes our case drift to a new scenario where item relations take meaning in a user context.
+The first limitation we found was to follow improvements in NLP models for our neural-based recommendation models. Transformers are known for requiring more fine-tuning than the methods which proved more success in our experiments. We are not sure if our results could not follow NLP path due to our implementation or due to the change of use case. While both cases have a vocabulary (words or items) NLP has much harder interrelation between the words than clothes do at H\&M. It is the addition of the user profile that makes our case drift to a new scenario where item relations take meaning inside a user context.
 
-We mentioned how we choose approximate neighbor methods for ALS to reduce computational time. Neural-based models achieved training within one day with enough GPUs but presented a new paradigm for industrializing the models. Moving to GPU-based environments needs work, and finding people with experience on them is now as easy as the CPU environment needed for AALS. We were surprised that GPU cloud computing costs for our models were lower than the CPU ones. We needed fewer (yet more powerful) GPU machines than CPU machines.
+We mentioned how we choose approximate neighbor methods for ALS to reduce computational time. Neural-based models achieved training within one day with enough GPUs but presented a new paradigm for industrializing the models. Moving to GPU-based environments needs work, and finding people with experience on them is not as easy as with the CPU environment needed for AALS. We were surprised that GPU cloud computing costs for our models were lower than the CPU ones. We needed fewer (yet more powerful) GPU machines than CPU machines.
 
 TOWRITEMORE
 
@@ -734,22 +745,22 @@ TOWRITEMORE
 We opened multiple work paths with this thesis, and we now list what we see as the most relevant ways to continue the work at H\&M both from the academic and industrial perspectives.
 
 \begin{itemize}
-    \item Recommendations longevity: how our model's performance degrades over time and how it plays a role in such a fast phase industry. H\&M is a fast-fashion company, meaning that the items in stock are often replaced between seasons and do not conserve their value as they would do in other companies that aim for timeless trends or quality over looks. It is commonly known that reputable mountaineering brand's items would last and stay relevant for years, but that is the opposite of what customers at H\&M look for. There is a lot of research on recommendation use cases where items have long longevity, for example, the movie recommendations at Netflix. There is a clear research line on how the longevity of recommended items plays a role in recommendation systems.
+    \item \textbf{Recommendations longevity}: how our model's performance degrades over time and how it plays a role in such a fast phase industry. H\&M is a fast-fashion company, meaning that the items in stock are often replaced between seasons and do not conserve their value as they would do in other companies that aim for timeless trends or quality over looks. It is commonly known that reputable mountaineering brand's items would last and stay relevant for years, but that is the opposite of what customers at H\&M look for. There is a lot of research on recommendation use cases where items have long longevity, for example, the movie recommendations at Netflix. There is a clear research line on how the longevity of recommended items plays a role in recommendation systems.
     
-    \item Transfer learning: Transfer learning has played an important role for NLP in recent years \cite{ruder2019transfer}. The increase in available training data and the search for reducing computational time have driven transfer learning research to a point where a lot of times, big models as BERT or ROBERTA only required little fine-tuning to specific use cases to achieve good performance. This is something to explore at H\&M as we have most of the world markets data available. The thesis project was only focused on a small market as Sweden. Can we use cross-market data to train generalist models and fine-tune them to specific markets? Can we reuse trained models within a season with little fine-tuning instead of starting from scratch every time we update the models? There could be a lot of work on finding the correct setup to use cross-market data and improve model reusability to increase both the model's performance and reduce computational cost.
+    \item \textbf{Transfer learning}: Transfer learning has played an important role for NLP in recent years \cite{ruder2019transfer}. The increase in available training data and the search for reducing computational time have driven transfer learning research to a point where a lot of times, big models as BERT or ROBERTA only required little fine-tuning to specific use cases to achieve good performance. This is something to explore at H\&M as we have most of the world markets data available. The thesis project was only focused on a small market as Sweden. Can we use cross-market data to train generalist models and fine-tune them to specific markets? Can we reuse trained models within a season with little fine-tuning instead of starting from scratch every time we update the models? There could be a lot of work on finding the correct setup to use cross-market data and improve model reusability to increase both the model's performance and reduce computational cost.
     
-    \item Split representation learning and the recommendation model: Right now, the explored neural-based models optimize two problems simultaneously. They learn user and item representations while optimizing neural layer weights. Splitting these two optimizations problems could translate into better performance for both scenarios and provide a warm start for a final joint model. Such behavior has been seen with pre-trained word embeddings for machine translation models \cite{glove}. We have previous work at H\&M \cite{hm2vec} where we learn items representations from their images and context to find items to compose an outfit. Can such representations be used as a warm start for the recommendation models?
+    \item \textbf{ Split representation learning and the recommendation model}: Right now, the explored neural-based models optimize two problems simultaneously. They learn user and item representations while optimizing neural layer weights. Splitting these two optimizations problems could translate into better performance for both scenarios and provide a warm start for a final joint model. Such behavior has been seen with pre-trained word embeddings for machine translation models \cite{glove}. We have previous work at H\&M \cite{hm2vec} where we learn items representations from their images and context to find items to compose an outfit. Can such representations be used as a warm start for the recommendation models?
     
-    \item Join collaborative methods with deep learning learned representations: Neural-based models have shown to improve our performance, but it is not clear whether the benefits come from the improved representations or the raw power of neural networks to learn distributions from data patterns. It would be interesting to explore if we can translate the learned representations to the latent space used for collaborative filtering and use known neighbor methods.
+    \item \textbf{Join collaborative methods with deep learning learned representations}: Neural-based models have shown to improve our performance, but it is not clear whether the benefits come from the improved representations or the raw power of neural networks to learn distributions from data patterns. It would be interesting to explore if we can translate the learned representations to the latent space used for collaborative filtering and use known neighbor methods.
     
-    \item Deep interactions between features: Current models use the ID from user and items to learn their representation. Work at \cite{xDeepFM}\cite{alibaba} have shown how interactions from user and items to features can result in improved performance. Replacing ID embeddings for item/user feature embeddings such as age, region, category, color could benefit us with better performance and solve cold start problems where we could provide a representation to new items/users with only their attributes. Learning cross-feature relations such as user location and clothing colors can report benefits for the model.
+    \item \textbf{Deep interactions between features}: Current models use the ID from user and items to learn their representation. Work at Microsoft \cite{xDeepFM} and Alibaba \cite{alibaba} have shown how interactions from user and items to features can result in improved performance. Replacing ID embeddings for item/user feature embeddings such as age, region, category, color could benefit us with better performance and solve cold start problems where we could provide a representation to new items/users with only their attributes. Learning cross-feature relations such as user location and clothing colors can report benefits for the model.
 \end{itemize}
 
 The thesis has only been the beginning for H\&M on exploring deep learning methods applied to recommendation models. We want to continue working along with the mentioned points and provide a new perspective on how these methods can be applied for the fashion industry. 
 
 \section{Conclusion}
 
-The usage of Deep learning methods for recommendations methods is a recent topic with more focus coming thanks to companies like Alibaba, Amazon, Google, and other major content platforms. We have found a new niche to apply their research at H\&M. We have identified multiple future work lines for both research and industry applications for fast phased recommendation scenarios like H\&M. Companies with access to large datasets as H\&M should explore machine learning methods as they are proving themselves as a powerful industry tool.
+The usage of Deep learning for recommendations methods is a topic with more focus coming thanks to companies like Alibaba, Amazon, Google, and other major content platforms. We have found a new niche to apply their research at H\&M. Our work proves the benefits of Deep learning at a fashion retailer, both at performance metrics and user engagement and diverse recommendations. We have identified multiple future work lines for both research and industry applications for fast phased recommendation scenarios like H\&M. Companies with access to large datasets as H\&M should explore machine learning methods as they are proving themselves as a powerful industry tool.
 
 \printbibliography
 
