@@ -686,7 +686,23 @@ We see a direct correlation between the max user history length and HR, the more
 \subsection{Recommended items features study}
 Another experiment relevant for our use case would be to study the features of recommended items. We get an initial view on how "diverse" our metrics are with the diversity metrics, but there is a use case-related study still to perform where we look at the item attributes of what we are recommending. For H\&M this can be looking at what categories are recommended the most, what range of prices are we recommending, age of the recommended products. All of this analysis can be missed with just diversity metrics, we now proceed to evaluate them on our baseline model AALS and the best performing neural-based N.S with LSTM cells.
 
-TODO
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{charts/popularity.png}
+    \caption{Average item popularity in top 14 recommendations.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{charts/price.png}
+    \caption{Average item price in top 14 recommendations.}
+\end{figure}
+
+\begin{figure}[H]
+    \centering
+    \includegraphics[scale=0.75]{charts/ages.png}
+    \caption{Average item ages in top 14 recommendations.}
+\end{figure}
 
 %%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
 %---------------------------------------------------------------------
