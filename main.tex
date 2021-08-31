@@ -91,13 +91,13 @@
 \clearpage
 
 \begin{abstract}
-Recommender systems are present in most content platforms today, e-commerce, media platforms, news, and any platform that aims to boost user engagement through user personalized content offerings. These systems collect user information and use it to deliver personalized experiences, minimizing the overload of content while providing the most relevant content for the user. The state-of-the-art models for recommendation systems have varied during the last years. Models have transitioned from matrix factorization methods to neural-based models based on large artificial neural networks.
+Recommender systems have a strong presence in today's web platforms, e-commerce, media platforms, news, and any platform that aims to boost user engagement through user personalized content offerings. These systems collect user information and use it to deliver personalized experiences, minimizing the overload of content while providing the most relevant content for the user. The state-of-the-art models for recommendation systems have varied during the last years. Models have transitioned from matrix factorization methods to neural-based models based on large artificial neural networks.
 
 This thesis aims to explore such neural-based models on a big fashion retailer, H\&M. H\&M is one of the biggest fashion retailers in the world and can benefit from user personalized recommendations to improve sales and user engagement with the brand. H\&M has been using matrix factorization methods in the past. Still, these methods can not catch temporal relations such as trends or seasons, neither the time evolution in a customer fashion preferences. We will work with neural-based models that capture that can capture such information.
 
 The data comes from the Swedish market for H\&M consists of web interactions. We will evaluate models with both traditional and diversity metrics. It is essential to assess diversity metrics in the recommendations offered. It is not always best to recommend the bestseller article, but instead recommend articles that boost user engagement, then translate into better selling.
 
-Results indicate that neural models can capture such temporal relations and perform better than the previous methods used at H\&M.
+Results indicate neural models can capture such temporal relations and perform better than the previous methods used at H\&M.
 \end{abstract}
 \clearpage
 
@@ -125,7 +125,7 @@ Thanks to the massive increase of both available data and tools to process it, t
 
 Recommender systems can be used across different domains, but is it one type of recommender system used across all domains? or is it one type per domain? The answer to the question relies on what available data the domain has. There are different approaches to recommender systems based on the data they used. The main two types of recommendation system are \textbf{Content-based}, which examines the user's previous content interactions and the content attributes to recommend new content. \textbf{Collaborative filtering} creates a user profile based on their content interactions and recommends content that similar profiles have interacted with. Content interactions can be explicit or implicit and will determine the way we treat them.
 
-At H\&M, we have implicit data in the form of web-based article interactions or purchases. Previous methods used at H\&M went with the collaborative filtering approach and created user profiles based on their interactions to recommend items that neighbor profiles had interacted with. In these new neural models, we will follow a content-based approach. We will provide user features and user-item interaction history to a model that will output a set of recommendations.
+At H\&M, we have implicit data in the form of web-based article interactions or purchases. Previous methods used at H\&M went with the collaborative filtering approach and created user profiles based on their interactions to recommend items that neighbor profiles had interacted with. With a new set of neural models, we will follow a content-based approach. We will provide user features and user-item interaction history to a model that will output a set of recommendations.
 
 \section{Problem Statement}
 
@@ -138,12 +138,12 @@ In this project, we will implement a new neural-based recommender system and com
 
 \section{Scope and objectives}
 
-In this thesis, we will compare a different set of models for recommendation systems. Our objective won't be to fine-tune models to achieve their best performance but rather provide an initial performance measurement to showcase their potential.
+Thesis scope is to compare different set of models for our recommendation systems at H\&M with an extensive evaluation for both performance and diversity metrics. Our objective won't be to fine-tune models to achieve their best performance, but rather provide an initial performance measurement to showcase their potential.
 
-Several metrics will evaluate each model's performance to examine both their accuracy and user engagement potential. We will provide conclusions on the results from the H\&M point of view. We will perform additional experiments to understand our model's performance, change embedding dimensions for both item and user, study length of user history, use randomized user histories.
+Several metrics will evaluate each model's performance to examine both their accuracy and user engagement potential. We will provide conclusions on the results from the H\&M point of view. We will perform additional experiments to understand our model's performance, change embedding dimensions for both item and user, study length of user history, and use randomized user histories.
 
 \section{Thesis outline}
-The rest of this report is organized as follows: In the second chapter, the main background needed for understanding the report will be given. This background comprehends from recommender systems terminology to an overview of artificial neural networks and the specifics of these models we used. The third chapter explains the specific architecture of the models tested. The fourth chapter gives an overview of the training setup and data processing, with a presentation of results. The fifth section discusses the presented results and the limitations of the project and finished the thesis with future work and conclusions.
+The rest of this report is organized as follows: In the second chapter, the main background needed for understanding the report will be given. This background comprehends from recommender systems terminology to an overview of artificial neural networks and the specifics of the models we used. The third chapter explains the specific architecture of the models tested. The fourth chapter gives an overview of the training setup and data processing, with a presentation of experiments results. The fifth section discusses the presented results and the limitations of the project, finishing with future work and conclusions.
 
 \section{Sustainability and ethics}
 Recommendation systems are built to interact with users by nature, raising concerns about their ethics and responsibilities. The initial problems start with the data used to train such models. Did the users provide consent for the usage of their data to train these models? Or even just usage of the data to provide them with recommendations. Companies will often collect as much data as possible and use them on their systems. Data collection policies have raised concerns on the European Union, and regulations for users' privacy have started to appear \cite{EUdataregulations2018}. The company's responsibility is to let the user know what data is collected, how, for how long, and what it will be used to. This data will have to be stored appropriately to protect user privacy and follow necessary regulations.
@@ -245,10 +245,10 @@ Where $\tilde{R}$ is the user-item matrix, $H$ contains user latent factors, and
 \subsubsection{Neural based}
 With the rise of neural networks in different fields, they also reached recommendation systems \cite{neuralonrecommendations}. Deep learning methods have been developed to tackle the collaborative filtering approach. There has been proposed methods based on denoising autoencoder networks \cite{wang2015collaborative}. Still, it was not until Deep Item-based Collaborative filtering \cite{deepicf} that deep learning methods beat traditional techniques. DeepICF made use of attention layers which already revolutionized the natural language field \cite{attention}. 
 
-Deep learning methods performed well in recommendations because of their power to find meaningful items and user representations in the embedding space. Embedding layers have been used previously in natural language processing and revolutionized the field due to the dramatic decrease in sparsity to represent words and their accurate representation. 
+Deep learning methods performed well in recommendations because of their power to find good items and user representations in the embedding space. Embedding layers have been used previously in natural language processing and revolutionized the field due to the dramatic decrease in sparsity to represent words and their accurate representation. 
 
 \subsection{Content based}
-Content-based recommender systems are built around the item attributes and the profile of the user preferences. The basic idea is to recommend items that are similar to what the user liked before \cite{contentbased}. These methods are suitable for situations with extensive data about the items and do not require user attributes such as demographic data. The model will build a user preference profile based on the history of its interactions and use it to recommend items the user will like.
+Content-based recommender systems are built around item attributes and user profile preferences. The basic idea is to recommend items that are similar to what the user liked before \cite{contentbased}. These methods are suitable for situations with extensive data about the items and do not require user attributes such as demographic data. The model will build a user preference profile based on the history of its interactions and use it to recommend items the user will like.
 
 \subsubsection{Vector Space Model}
 The Vector Space Model \cite{vectorspacemodel} is the most famous method for content-based recommenders. The model inspires information retrieving systems to implement an item scorer. It treats item attributes as keywords and uses the TF-IDF \cite{tfidf} to calculate weights based on those keywords. Given an item, $d_j$, its content is defined by a set of weights $w_ij$ where each weight corresponds to the $i$th keyword of the item $d_j$.
@@ -300,7 +300,7 @@ The neurons building an ANN are compute units that receive one or more inputs, w
 
 When creating an ANN, the activation functions of the neurons will play an important role, many mathematical functions have been used in the field, but not all will fit the requirements for each use-case. The most common activation functions are RELU, Leaky-RELU, Identity or Sigmoid \cite{neurons} but there are others such as Gaussian, Hyperbolic tangent, Binary, or GELU. Here are the most common functions
 
-\begin{figure*}[H]
+\begin{figure*}[h]
     \centering
     \begin{subfigure}[b]{0.475\textwidth}
 \centering
@@ -321,7 +321,7 @@ $$
     \begin{subfigure}[b]{0.475\textwidth}   
 \centering
 $$ f(x) = x$$
-\caption{Identify}
+\caption{Identity}
     \end{subfigure}
     \hfill
     \begin{subfigure}[b]{0.475\textwidth}   
@@ -333,7 +333,7 @@ $$ f(x) = \frac{e^{x}}{e^{x} + 1}$$
     {\small Most common neuron activation functions} 
 \end{figure*}
     
-Every set of weights in a neuron layer are learnable during training. Weight training is the foundation of neural networks training, and while there are multiple mathematical techniques to learn them, the most common one is Backpropagation \cite{backprop}. In Backpropagation we need an error function to evaluate how well the current weights are performing, for example, the RMSE error for a regression problem. We will derive our learnable weights against that error function to travel within the hyperplane of weight values, finding the ones with the lower error function. This algorithm is computed inversely; the output layer errors are calculated first and then propagated to the previous layer to compute their errors. The process is repeated until reaching the first layer.
+Every set of weights in a neuron layer are learnable during training. Weight training is the foundation of neural networks training, and while there are multiple mathematical techniques to learn them, most common one is Backpropagation \cite{backprop}. In Backpropagation we need an error function to evaluate how well the current weights are performing, for example, the RMSE error for a regression problem. We will derive our learnable weights against that error function to travel within the hyperplane of weight values, finding the ones with the lower error function. This algorithm is computed inversely; the output layer errors are calculated first and then propagated to the previous layer to compute their errors. The process is repeated until reaching the first layer.
 
 \subsection{Feedforward Neural Network}
 Feedforward neural networks (FFNN) are the basic iteration of ANN where neurons can only be connected forward, not establishing a connection with themselves or previous neurons. Information will only move forward, starting from the input layer to the hidden layers and finally the output layer. A diagram of FFNN can be seen here:
@@ -574,12 +574,12 @@ The main objective for the thesis has been evaluating different neural-based mod
 
 \section{Data}
 \subsection{Source}
-Models have been trained with web interaction data from H\&M Swedish website for one month. We used web interactions data and not other sources such as transactions because of the higher population of the data source. Customers browse the website much more often than they buy items. Having a populated data source is a must for our models, as we are now using deep learning methods known to be data-dependent. The more data samples we have, the more accurate embeddings and relations our networks will learn. 
+Models have been trained with web interaction data from H\&M Swedish website for one month. We used web interactions data and not other sources such as transactions because of the higher population on web interactions. Customers browse the website much more often than they buy items. Having a populated data source will help our models generalize better, learn better representations and overall increase performance. Deep Learning models are known to be highly dependent on the number of data being trained on.
 
 Web interactions collect the history of items the user has seen in H\&M website. Building a recommender capable of predicting the next item to browse will help users find valuable items based on their history, increasing user satisfaction and sales.
 
 \subsection{Preprocessing}
-The neural models will be trained to predict the next user interaction based on the user history. A user history of interactions can be used to create multiple samples that train the network. Given a user history $H$ containing $h_1, h_2, .. h_n$ interactions, a training sample can be created from each interaction, $h_t$ where the past interactions $h_1, .., h_t-1$ are used as past history to predict interaction $h_t$. A representation of how preprocessing would affect a user history is shown in the following figures.
+Neural models will be trained to predict the next user interaction based on the user history. A user history of interactions can be used to create multiple samples that train the network. Given a user history $H$ containing $h_1, h_2, .. h_n$ interactions, a training sample can be created from each interaction, $h_t$ where the past interactions $h_1, .., h_t-1$ are used as past history to predict interaction $h_t$. A representation of how preprocessing would affect a user history is shown in the following figures.
 
 \begin{figure}[H]
     \centering
@@ -695,7 +695,7 @@ With performance or diversity metrics, we get a generalist performance evaluatio
 
 Both models recommend significantly higher popular items than the average item popularity. Our baseline model is highly skewed towards high popularity items and decreases popularity as the item recommendation rank increases. The neural Sequencer model popularity stays consistant over the fourteen recommendations and stays lower than the baseline across all ranks.
 
-For a second analysis we went with the average price on recommended items, same models and top fourteen recommended items.
+Secondly, we analyze the average price on recommended items, same models and top fourteen recommended items.
 
 \begin{figure}[H]
     \centering
@@ -711,7 +711,7 @@ Our models perform have an opposite behavior when comparing with the average ite
     \caption{Average item ages in top 14 recommendations.}
 \end{figure}
 
-Both models present a skew towards older items as the higher the rank they get, but in totally different scales. The baseline model presents its top tanked item with twice the age as the average item age, while the top ranked Neural Sequencer item only has $10\%$ an increase in age. Connecting with previous findings we can explain the results, the more popular items with aggressive prices are usually sold across all seasons, making them older than the on season products. 
+Both models present a skew towards older items as the higher the rank they get, but in totally different scales. The baseline model presents its top tanked item with twice the age as the average item age, while the top ranked Neural Sequencer item only has $10\%$ an increase in age. The more popular items with aggressive prices are usually sold across all seasons, making them older than the on season products. 
 
 All three analysis have confirmed our initial findings with the diversity metrics evaluation, the baseline model has a reduced set of recommended items and provides a less personalized set of recommendations than the Neural Sequencer, proved by its skew towards low-priced and popular items. We now have a business explanation on how those differences in diversity metrics are translated in offered recommendations.
 
@@ -724,7 +724,7 @@ The initial objective for this thesis was to explore new models that could captu
 
 We have proved the neural-based models benefit from ordering user-item interactions with our ordering experiment, with improvements not only in performance metrics but also diversity metrics as the model will have a more recent representation of the user. Experiments with the max user history length feeded to the model supported those findings and proved the importance of a good user profile representation through its history. 
 
-We also found unexpected findings when stress testing neural-based models with their embeddings sizes. We learned how user and item embeddings play different roles in the performance of the recommendations and can be subject to multiple optimizations. User embeddings play a bigger role in diversity metrics and do not help with performance metrics. Item embeddings are the main driver for performance metrics and the diversity metric more tied to items, Coverage.
+We also found explainability results for our model when stress testing neural-based models with their embeddings sizes. We learned how user and item embeddings play different roles in the performance of the recommendations and can be subject to multiple optimizations. User embeddings play a bigger role in diversity metrics and do not help with performance metrics. Item embeddings are the main driver for performance metrics and the diversity metric more tied to items, Coverage.
 
 Moreover, we failed to follow the path of NLP and Deep Learning improvements. We obtained our best performing models with recurrent networks with LSTM and GRU cells. We were unsuccessful in following the improvement's path with the usage of transformers methods as Alibaba did \cite{alibaba}.  
 \cite{sun2019bert4rec}.
