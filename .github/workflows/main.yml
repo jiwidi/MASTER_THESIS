@@ -13,7 +13,7 @@ jobs:
       - name: Compile LaTeX document
         uses: dante-ev/latex-action@latest
         with:
-          root_file: texfiles/thesis.tex
+          root_file: thesis.tex
 
       - name: Commit and Push
         run: |
