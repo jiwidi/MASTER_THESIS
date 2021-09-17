@@ -59,9 +59,9 @@
 
         % \end{figure}
         \begin{figure}\centering
-        \subfloat{\label{a}\includegraphics[width=.45\linewidth]{logoUPV3.jpg}}\hfill
-        \subfloat{\label{b}\includegraphics[width=.45\linewidth]{dsic_logo.png}}\par 
-        \subfloat{\label{c}\includegraphics[width=.45\linewidth]{2560px-H&M-Logo.svg.png}}
+        \subfloat{\label{a}\includegraphics[width=.45\linewidth]{marca_UPV_principal_negro300.jpg}}\hfill
+        \subfloat{\label{b}\includegraphics[width=.45\linewidth]{dsiclogo.png}}\par 
+        % \subfloat{\label{c}\includegraphics[width=.45\linewidth]{2560px-H&M-Logo.svg.png}}
         \end{figure}
         
         
@@ -90,7 +90,7 @@
         \\
         University: \textbf{UPV - Universitat Politècnica de València} 
         \\
-        Date: \textbf{September 2021}
+        Course : \textbf{2020-2021}
         
     \end{center}
 \end{titlepage}
@@ -583,7 +583,7 @@ Basing on Google's work with Youtube recommendations \cite{rnn-youtube} we imple
 
 The user id and user sequence of item interactions will pass through their respective embedding layers. The sequence of item representations will then pass through a three-layer LSTM which latest state will be concatenated to the user id representation and finally sent to a final classification layer predicting the next item the user will interact with. RNN gates are known not to be the most efficient gate for recurrent networks. We will also try another two variations with both LSTM and GRU cells.
 
-\section{Neural sequencer with attention}
+\section{Neural Sequencer with attention}
 Following NLP research, our next experiment consists of the addition of an encoder-decoder architecture with attention. The attention layer was a breakthrough on machine translation \cite{attention}. Schema of the model.
 
 \begin{figure}[H]
