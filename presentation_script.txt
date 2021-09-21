@@ -1,0 +1,223 @@
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SLIDE 1
+
+Hello!  As you know, this is my master thesis presentation. The title of the thesis is "Fashion recommender systems with focus on time and
+seasonability"
+
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Slide 2
+
+This is an overview of what the presentation will touch on. I'll give an overview on what is treated on the thesis and its purpose. I'll phrase the research question and move on the data used. I'll explain data format, preprocessing and train/test split.
+
+We will then move to the evaluation techniques used, followed by a brief description of used models and their results on our experiments. We will end with conclusions and future work
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Slide 3 - INTRODUCTION
+
+First of all, this thesis is a collaboration with H&M. This means we have used their customer and item data to create a recommendation model deployed in H&M website as we speak now.
+
+H&M is a known retailer company that had an 40% increase in online revenue from 2019 to 2020, representing 5.1 Billion euros revenue at 2020. Recommender systems on their online platform can make a big impact and its one of the main focuses from their side.
+
+Also mention that we will treat with fashion industry recommenders, is a different scenario  than the State of the art recommender.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Slide 4 - RESEARCH QUESTION
+
+The main question we aimed to solve with this thesis is if treating our user history as an ordered sequenced of events will improve or recommendation models.
+
+The nature of H&M business, fashion and trends led me to believe that order of interactions will play a role. Previous models to this thesis treated user history as a collection of events, but such events didn't account for the order or time they occurred on. I will go more into the details of this on the model section.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Slide 5 - STATE OF THE ART
+
+Is good to mention the current state of the art for recommender systems. It is mainly driven by big tech companies with tremendous platforms as Spotify or Youtube. We have taken inspiration from their publications and created specific models for our use case. 
+
+They have been pioneers to bring Deep learning methodologies to recommender systems, we will use their research on modelling and add new evaluation metrics that suit our use case.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Slide 6 - DATASET
+
+Regarding the data used, we used user interactions in the H&M website, including everything from views, clicks or add to favorite. The data was collected during 1 month in the Swedish market, one of the smallest markets for H&M.
+
+We will go now a bit more into detail on how the data format is
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SLIDE - 7 PREPROCESSING
+We collected a list of interactions for every user. We splitted  the user history into multiple samples with the logic seen on the slide:
+
+Given a user history H containing h1, h2, ..hn interactions, a training
+sample can be created from each interaction, ht where the past
+interactions h1, .., ht − 1 are used as past history to predict interaction ht
+
+Given H the model will produce the conditional probability of the next item the user will interact across all different item classes. The ordered list of probabilities will represent the recommendation output from the model.
+
+We used the latest known interaction of each user as test, as it represent the use case where the recommender will be used on. 
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Slide - 8 Evaluation
+
+Evaluation is very important on this thesis. State of the art recommenders measure performance with classification metrics such as hit ratio (similar to precission) but our use case requires new metrics capable of measuring the user interaction with the given recommendations. As a fashion brand the user engagement is very important.  In the case of H\&M, recommending top-selling articles such as white shirts, white socks may show good performance metrics on paper, but it won't translate into greater user engagement.
+
+For classification metrics we will use HIT ratio, measuring if our top K recommendations included the next user interaction.
+
+The user engagement side of the recommender will me measured with diversity metrics. The first one is the coverage which measures the % of items from the total item vocabulary our recommender is offering.
+
+Overlap measures % of overlapping recommendation sets. Meaning if two users were given the same recommendations they overlap each other.
+
+Personalization gives an extra view to overlap and treats the recommendation set as a vector, then it will measure distance in space between them to add granularity on the uniqueness.
+
+Novelty will show how new the recommended items are.
+
+All metrics are calculated at Top K, meaning that it takes the top 14 items recommended from the model.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Slide 9 - MODELS
+
+The selected models for our experiments can be divided in two groups. Baseline and new neural based models. 
+
+The baseline model consists of Aproximate Alternative LEast Squares and is the model we had been using. It uses matrix factorization methods to create latent representations of items and users, it then uses neighbord methods to find items the user will like based on items users in the same neighboor liked. The latent factors creating doesn't take into account at all when the user rated X item and thus, fail to showcase our research question.
+
+New models are neural based, with heavy influence from NLP research. It treats user history sequences similarly to phrases and tries to predict the next item the user will interact with. It makes uses of embedding layers for both user and items to help represent them in an space that is later used by different layers to predict the next item. 
+
+We tried the most famous approaches in NLP, from scratch RNN to transformers.
+
+WE NOW MOVE TO OUR EXPERIMENTS
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+Slide 10 - MODELS PERFORMANCE
+
+The first experiment is a showcase of each model performance in all different metrics.
+
+We see how all neural based models have a x9 or x10 performance in hit ratio. 
+
+Coverage is also higher, showing that the AALS is highly skewed towards a few set of items. 
+
+Overlap is better in AALS showing only 15% of repetitive recommendation sets
+
+But is personalization that adds the extra view and shows that AALS has only 56% of personalized user sets while neurals are around 90%. 
+
+For novelty all neural based shows an average of two points higher.
+
+Now with the base results we wanted to dig deeper on neural based models and understand their performance better, where was it coming from and if our research question hold true. We used the best performing model, LSTM
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+Slide 11 - EMBEDDINGS
+
+Second experiment was to play a bit with the dimensions of user and item embeddings, by doing so we are restricting the model from that information. Sort of choaking the model. We tried different values but now we only show the extremes, 1 or 256
+
+We see that with user embeddings as low as 1 the classification doesnt get affected as much but overlap and personalization do, showing a small increase.
+
+When we reduce item size is then where classification suffers a big drop and coverage decreases as well. Makes sense as the model is not capable of representing items properly.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SLIDE 12 - Ordering
+
+To validate our research question, we altered the order of the user sequences. We wanted to prove that is not only the raw performance of neural networks but also the ordering that helps to achieve this metrics. 
+
+We tried 3 different orders
+* Correct order
+* Shuffle interactions within the same day
+* Shuffle all interactions, random order
+
+Results shows that order does indeed matter and performance drops as we randomize the sequence even more and more. All metrics benefit from the correct order
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SlIDE 13 - History
+
+The latest experiment tries to identify how much of the user history we should feed the model. Our default value was 20 but we tried from 5 to 50
+
+Results indicate that the more history the better, all metrics except coverage see and improvement. The more user history, the better representation the model has and is able to offer more accurate representations as well as more unique. Increasing diversity.
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+SLIDE 14 - CONCLUSIONS
+
+Neural models beat our baseline matrix factorization methods.
+
+User and item embeddings both play different roles and affect specific metrics.
+
+It is not the raw neural based models performance, but treating theuser history as an ordered sequence that reports best results.
+
+The more history of the user we include, the better.
+
+Unable to follow NLP research path. Transformers did not perform as good as expected
+
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%%
+
+
+SLIDE 15 - FUTURE WORK
+
+Recommendations longevity - Study model’s performance over time,how quick it degrades.
+
+Transfer learning - Reuse embeddings and previous models.
+
+Split representation and recommendation models - Train each oneseparately first and then join them.
+
+Usage of item/user features with embeddings - Will help reduce coldstarts.
+
+SLIDE 16
+
+QUESTIONS>?
+

@@ -81,6 +81,10 @@
 \usepackage{graphicx} % Allows including images
 \usepackage{booktabs} % Allows the use of \toprule, \midrule and \bottomrule in tables
 
+\usepackage[USenglish,UKenglish,french,spanish,italian]{babel}
+\usepackage[nodayofweek,level]{datetime}
+
+\newcommand{\mydate}{\formatdate{22}{9}{2021}}
 %----------------------------------------------------------------------------------------
 %	TITLE PAGE
 %----------------------------------------------------------------------------------------
@@ -95,10 +99,11 @@
 \medskip
 % \textit{john@smith.com} % Your email address
 }
-\date{\today} % Date, can be changed to a custom date
+\date{\mydate} % Date, can be changed to a custom date
 
 \begin{document}
 
+\selectlanguage{USenglish}
 \begin{frame}
 \titlepage % Print the title page as the first slide
 \end{frame}
@@ -161,11 +166,12 @@
 \end{frame}
 
 \section{Dataset}
-\begin{frame}{Dataset - Google anaylicts data}
+\begin{frame}{Dataset}
 \begin{itemize}
     \item User interactions in H\&M website. Clicks, views.
     \item Swedish Market
-    \item Between 2021-03-01 and 2021-04-01
+    \item 1 month data, 2021-03-01 to 2021-04-01.
+    \item Removed consecutive duplicates.
     \item Last user interactions as test set.
 \end{itemize}
 \end{frame}
@@ -189,82 +195,114 @@ Given a user history $H$ containing $h_1, h_2, .. h_n$ interactions, a training 
     % \caption{2 Figures side by side}%
 \end{figure}
 \end{columns}
+Given $H$ the model will produce the conditional probability of the next item the user will interact across all different item classes. The ordered list of probabilities will represent the recommendation output from the model.
+
 \end{frame}
 
-\section{Dataset}
 
 \section{Evaluation}
 \begin{frame}{Evaluation}
-    
+\begin{block}{Classification Performance}
+\begin{itemize}
+    \item Hit Ratio at K - Is the next interaction in the user recommendations set.
+\end{itemize}
+\end{block}
+
+\begin{block}{Diversity}
+\begin{itemize}
+\item Coverage at K- \% of total items included in the recommendation set
+\item Overlap at K- \% of user recommendations sets that are equal
+\item Personalization at K - Measures how unique are each user recommendation set.
+\item Novelty at K - Measures novelty of recommended items.
+\end{itemize}
+\end{block}   
+At K: Measure within the top K recommendations. We will use 14.
 \end{frame}
+
 \section{Models}
 \begin{frame}{Models}
+\begin{columns}[c] % The "c" option specifies centered vertical alignment while the "t" option is used for top vertical alignment
+
+\column{.5\textwidth} % Left column and width
+
+\begin{figure}%
+    \centering
+    \centering{{\includegraphics[scale=0.25]{images/background/matrix_factorization.png} }}%
+    % \caption{2 Figures side by side}%
+\end{figure}
+\vspace{30px}
 \begin{itemize}
-    \item AALS - Aproximate Alternative Least Squares (Current method)
-    \item Neural Sequencer RNN, LSTM, GRU
-    \item Neural Sequencer with attention
-    \item Neural Sequencer with transformers
+    \item AALS - Aproximate Alternative Least Squares 
 \end{itemize}
+
+\column{.45\textwidth} % Right column and width 
+
+\begin{figure}%
+    \centering
+    \centering{{\includegraphics[scale=0.2]{images/models/RNN.png} }}%
+    % \caption{2 Figures side by side}%
+\end{figure}
+
+\begin{itemize}
+    \item Neural Sequencer - Tried RNN, LSTM, GRU, Attention, Transformers
+\end{itemize}
+\end{columns}
+
 \end{frame}
 
-\begin{frame}{Frame Title}
-\begin{figure}[!htb]
-\minipage{0.32\textwidth}
-  \includegraphics[width=\linewidth]{images/models/RNN.png}
-\endminipage\hfill
-\minipage{0.32\textwidth}
-  \includegraphics[width=\linewidth]{images/models/Attention.png}
-\endminipage\hfill
-\minipage{0.32\textwidth}%
-  \includegraphics[width=\linewidth]{images/models/Transformer.png}
-\endminipage
-\end{figure}   
-\end{frame}
-
-% \section{Experiments}
-% \begin{frame}{Experiments - Models performance}
-% \include{tables/models_overview}s
+% \begin{frame}{Frame Title}
+% \begin{figure}[!htb]
+% \minipage{0.32\textwidth}
+%   \includegraphics[width=\linewidth]{images/models/RNN.png}
+% \endminipage\hfill
+% \minipage{0.32\textwidth}
+%   \includegraphics[width=\linewidth]{images/models/Attention.png}
+% \endminipage\hfill
+% \minipage{0.32\textwidth}%
+%   \includegraphics[width=\linewidth]{images/models/Transformer.png}
+% \endminipage
+% \end{figure}   
 % \end{frame}
 
+\section{Experiments}
+\begin{frame}{Experiments - Models performance}
+\include{tables/models_overview}
+\end{frame}
+
+\begin{frame}{Experiments - Embeddings}
+\include{tables/summary_embeddings}
+\end{frame}
+
+\begin{frame}{Experiments - Ordering}
+\include{tables/order_sequence}
+\end{frame}
+
+\begin{frame}{Experiments - History}
+\include{tables/user_history}
+\end{frame}
 
 
-\section{Conclusions}
+
+\section{Conclusions and future work}
 \begin{frame}{Conclusions}
 
 \begin{itemize}
-    \item Promising results, maybe too good? Need to be reviewed!
-    \item We found a more populated datasource to represent users items preferences than plain transactions.
-    \item Around x5 improvement in reco pipeline.
-    \item Many possibilities to work with from here on.
+    \item Neural models beat our baseline matrix factorization methods.
+    \item User and item embeddings both play different roles and affect specific metrics. 
+    \item It is not only the raw neural based models performance, but treating the user history as an ordered sequence that reports best results.
+    \item The more history of the user we include, the better.
+    \item Unable to follow NLP research path.
 \end{itemize}
 \end{frame}
 %------------------------------------------------
-\section{Future work}
 \begin{frame}{Future work}
-\begin{block}{Dataset}
 \begin{itemize}
-    \item Cleaning and preprocessing.
-    \item Get browsing timestamps within the same day.
-    \item Cross market? Split segments? Include transactions?
-    \item Weight browsing events, filter on time elapsed.
+    \item Recommendations longevity - Study model's performance over time, how quick it degrades.
+    \item Transfer learning - Reuse embeddings and previous models.
+    \item Split representation and recommendation models - Train each one separately first and then join them.
+    \item Usage of item/user features with embeddings - Will help reduce cold starts.
 \end{itemize}
-\end{block}
 
-\begin{block}{Article2vec}
-\begin{itemize}
-\item Pretrained embeddings across markets?
-\item Continue exploring visualizations.
-\item Create 3d interactive map of embeddings with PCA, T-RNE.
-\end{itemize}
-\end{block}
-
-\begin{block}{Predicting browsing \& Reco}
-\begin{itemize}
-    \item Optimize the model, this is a barebones implementation.
-    \item We used a very basic model, try attention, multi head attention (transformers) architectures.  \textbf{Huge room for improvement}
-    \item Remove the user embedding?
-\end{itemize}
-\end{block}
 \end{frame}
 
 \begin{frame}
